@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricLive - Live Cricket Scores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="hex-grid"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+        <div class="cyber-lines"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" class="cricket-svg">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff"/>
+                            <stop offset="50%" style="stop-color:#0066ff"/>
+                            <stop offset="100%" style="stop-color:#00ffaa"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="2" filter="url(#glow)"/>
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#gradient)" stroke-width="1" opacity="0.5"/>
+                    <path d="M25 75 L75 25" stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+                    <circle cx="50" cy="50" r="8" fill="url(#gradient)"/>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <h1>CRICLIVE</h1>
+                <span class="tagline">Real-time Cricket Universe</span>
+            </div>
+        </div>
+        <!-- Removed scorecard tab, simplified to 3 main tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-btn active" data-tab="live">
+                <span class="btn-icon">
+                    <span class="pulse-ring"></span>
+                    <span class="pulse-dot"></span>
+                </span>
+                <span class="btn-text">LIVE</span>
+            </button>
+            <button class="nav-btn" data-tab="upcoming">
+                <span class="btn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </span>
+                <span class="btn-text">UPCOMING</span>
+            </button>
+            <button class="nav-btn" data-tab="recent">
+                <span class="btn-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                </span>
+                <span class="btn-text">RECENT</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- New category filter tabs for International, Domestic, Women -->
+    <div class="category-filter">
+        <button class="category-btn active" data-category="all">ALL MATCHES</button>
+        <button class="category-btn" data-category="international">INTERNATIONAL</button>
+        <button class="category-btn" data-category="domestic">DOMESTIC</button>
+        <button class="category-btn" data-category="women">WOMEN</button>
+    </div>
+
+    <!-- Full width layout without scorecard panel -->
+    <main class="main-content">
+        <!-- Live Matches Section -->
+        <section id="live-section" class="section active">
+            <div class="section-header">
+                <h2>
+                    <span class="live-indicator"></span>
+                    Live Matches
+                </h2>
+            </div>
+            <div id="live-matches" class="matches-container">
+                <div class="loading-container">
+                    <div class="loader-advanced">
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                    </div>
+                    <p>Loading live matches...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Matches Section -->
+        <section id="upcoming-section" class="section">
+            <div class="section-header">
+                <h2>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="section-icon">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Upcoming Matches
+                </h2>
+            </div>
+            <div id="upcoming-matches" class="matches-container">
+                <div class="loading-container">
+                    <div class="loader-advanced">
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                    </div>
+                    <p>Loading upcoming matches...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Matches Section -->
+        <section id="recent-section" class="section">
+            <div class="section-header">
+                <h2>Recent Matches</h2>
+            </div>
+            <div id="recent-matches" class="matches-container">
+                <div class="loading-container">
+                    <div class="loader-advanced">
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                        <div class="loader-ring"></div>
+                    </div>
+                    <p>Loading recent matches...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="upcoming-ticker">
+            <span class="ticker-label">UPCOMING:</span>
+            <div class="ticker-content" id="ticker-content">
+                <span>Loading upcoming matches...</span>
+            </div>
+        </div>
+        <p class="footer-text">2025 CricLive | Powered by Cricbuzz API</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
