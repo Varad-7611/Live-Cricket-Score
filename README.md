@@ -106,9 +106,14 @@ The UI is designed using:
 
 ## 📸 Screenshot
 
-- Live match scorecards 
+- Live matches scorecards 
 <img width="1869" height="902" alt="Screenshot 2025-11-28 194911" src="https://github.com/user-attachments/assets/6f7e1fdc-e5b7-4368-8aba-bb7531b19bf6" />
 
+- Upcoming Matches
+<img width="1853" height="889" alt="Screenshot 2025-11-28 194927" src="https://github.com/user-attachments/assets/d00b5239-559e-45ad-9c24-fc8a932b5c0c" />
+
+- Recent Matches
+<img width="1855" height="907" alt="Screenshot 2025-11-28 194939" src="https://github.com/user-attachments/assets/1dba4cd4-1bcb-4a89-9f11-fe311fc40770" />
 
 
 
