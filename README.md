@@ -41,7 +41,6 @@ This project delivers real-time cricket scores, commentary, match details, and p
 ---
 
 ## 📁 Folder Structure
-
 project/
 │── app.py
 │── templates/
@@ -51,6 +50,9 @@ project/
 │   └── script.js
 │── tests/
 │   └── test_app.py
+
+
+
 
 ## 🧪 Pytest — 12 Passing Tests
 
